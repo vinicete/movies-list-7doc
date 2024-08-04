@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="scripts/script.js" defer></script>
+  
+  <title>Favorite Movie</title>
+</head>
+<body>
+
+  <main>
+    <h1>Filmes Populares</h1>
+
+    <nav id="search">
+      
+      <div id="search_bar">
+        
+        <input type="text" name="" id="search_input" placeholder="Digite algum filme para pesquisar...">
+        <input type="image" src="assets/images/search-icon.svg"></input>
+      </div>
+      
+      <div class="favorites-checkbox">
+        <input type="checkbox" name="" id="favorites_only">
+        <label for="favorites_only">Mostrar meus filmes favoritos apenas</label>
+      </div>
+      
+    </nav>
+
+    <div id="movies">
+
+        <div class="movie-item">
+           <div class="movie-item-info">
+
+              <img src="assets/images/image 1.svg" alt="">
+
+              <div class="movie-item-title">
+
+                <p>Avengers Endgame (2019)</p>
+
+                <div class="avaliation">
+                  <div class="grade">
+                    <img class="star" src="assets/images/Star.svg" alt="">
+                    <span>9.2</span>
+                  </div>
+                  
+                  <button class="grade" id="set_favorite">
+                    <img class="heart" src="assets/images/heart-empty.svg" alt="">
+                    <span>Favoritar</span>
+                  </button>
+                  
+                </div>
+
+              </div>
+           </div>
+
+           <div class="movie-item-text">
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+           </div>
+        </div>
+
+        
+
+       
+
+     
+    </div>
+  </main>
+  
+</body>
+</html>
