@@ -152,6 +152,7 @@ main>h1{
 }
 
 .movie-item-info>img{
+  width: 255px;
   border-radius: 100px;
   box-shadow: 12px 6px 12px 4px rgba(0, 0, 0, 0.3);
 }

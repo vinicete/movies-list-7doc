@@ -19,10 +19,14 @@ let list = [
   }
 ]
 
-function updateMovieList(){
+function updateMovieList(list){
 
   movies.innerHTML = ''
   list.forEach(movie=>{
+
+    const backdropPath = movie.backdrop_path 
+      ? `https://image.tmdb.org/t/p/w300/${movie.backdrop_path}` 
+      : '../assets/images/image2.jpeg';
 
     const movieItem = document.createElement('div')
     movieItem.classList.add('movie-item')
@@ -38,19 +42,20 @@ function updateMovieList(){
     movieItem.appendChild(movieItemText)
 
     const movieDesc = document.createElement('p')
-    movieDesc.innerText = movie.description
+    movieDesc.innerText = movie.overview
     movieItemText.appendChild(movieDesc)
 
     const movieImg = document.createElement('img')
-    movieImg.src = movie.image
+    movieImg.src = backdropPath
     movieItemInfo.appendChild(movieImg)
 
     const movieItemTitle = document.createElement('div')
     movieItemTitle.classList.add('movie-item-title')
     movieItemInfo.appendChild(movieItemTitle)
-
+    
+    const year = new Date(movie.release_date).getFullYear()
     const title = document.createElement('p')
-    title.innerText = `${movie.title} (${movie.year})`
+    title.innerText = `${movie.title} (${year})`
     movieItemTitle.appendChild(title)
 
     const avaliation = document.createElement('div')
@@ -67,7 +72,7 @@ function updateMovieList(){
     grade.appendChild(star)
 
     const gradeValue = document.createElement('span')
-    gradeValue.innerText = movie.grade
+    gradeValue.innerText = movie.vote_average.toFixed(1)
     grade.appendChild(gradeValue)
 
 
@@ -85,15 +90,11 @@ function updateMovieList(){
     favButtonSpan.innerText = 'Favoritar'
     favButton.appendChild(favButtonSpan)
 
-
-
-
-
-
-    console.log(movies.innerHTML)
   })
 
 }
 
 
-updateMovieList()
+//updateMovieList()
+
+export default updateMovieList;
