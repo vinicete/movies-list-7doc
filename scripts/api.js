@@ -1,6 +1,6 @@
 import updateMovieList from "./script.js";
+import { apiKey, bearer } from "./environment.js";
 
-export const apiKey = 'c3aa690acc0285b3324696b370038de1'
 
 let movies = []
 
@@ -8,7 +8,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjM2FhNjkwYWNjMDI4NWIzMzI0Njk2YjM3MDAzOGRlMSIsIm5iZiI6MTcyMjc5Njk1Ny45MzIxOTUsInN1YiI6IjY2YWI5Y2NlNzIzMmQxZjEzMmNkNWEwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l-GLK11Cdv8tlUtkqka4G8ksLw-YZEEH5dyXkcMmJ60'
+    Authorization: `${bearer}`
   }
 };
 

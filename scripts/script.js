@@ -2,26 +2,6 @@ import { carregar } from "./api.js"
 
 const movies = document.querySelector('#movies')
 
-let list = [
-  {
-    image: "/assets/images/image 1.svg",
-    title: "Avengers Endgame",
-    year: 2019,
-    grade: 9.2,
-    isFavorite: true,
-    description: "Descrição loka...",
-  },
-  {
-    image: "/assets/images/image 1.svg",
-    title: "Avengers Endgame",
-    year: 2019,
-    grade: 9.2,
-    isFavorite: true,
-    description: "Descrição doida...",
-  }
-]
-
-
 let favMovies = getLocalStorage()
 
 function saveToLocalStorage(favMovies){
