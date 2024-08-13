@@ -12,7 +12,7 @@ const options = {
   }
 };
 
-fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}language=pt-BR&page=1`,options)
+const carregar = () => fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}language=pt-BR&page=1`,options)
   .then(response => response.json())
   .then(response => {
     
@@ -21,26 +21,46 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}language=pt-B
     console.log(response)
     updateMovieList(movies)
 
+  
   })
   .catch(err => console.error(err));
 
-  const searchBar = document.querySelector('#search_bar')
-  const searchInput = document.querySelector('#search_input')
+carregar()
 
-  searchBar.addEventListener('submit', function(event){
+  
+const searchBar = document.querySelector('#search_bar')
+const searchInput = document.querySelector('#search_input')
 
-    event.preventDefault()
-    console.log(searchInput.value)
+searchBar.addEventListener('submit', function(event){
 
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${searchInput.value}&include_adult=false&language=en-US&page=1`, options)
-    .then(response => response.json())
-    .then(response => {
-      movies = response.results
+  event.preventDefault()
+  console.log(searchInput.value)
 
-      console.log(response)
-      updateMovieList(movies)
+  fetch(`https://api.themoviedb.org/3/search/movie?query=${searchInput.value}&include_adult=false&language=en-US&page=1`, options)
+  .then(response => response.json())
+  .then(response => {
+    movies = response.results
 
-    })
-    .catch(err => console.error(err));
+    console.log(response)
+    updateMovieList(movies)
 
   })
+  .catch(err => console.error(err));
+
+})
+
+  
+
+ /* document.addEventListener('DOMContentLoaded',function(){
+    const favButton = document.querySelector('#set_favorite')
+    favButton.addEventListener('click', function(){
+      console.log(favButton)
+    })
+
+  })*/
+
+
+export { carregar }
+
+
+  

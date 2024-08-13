@@ -152,9 +152,11 @@ main>h1{
 }
 
 .movie-item-info>img{
-  width: 255px;
-  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  border-radius: 200px;
   box-shadow: 12px 6px 12px 4px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
 }
 
 .movie-item-text{
@@ -167,6 +169,7 @@ main>h1{
 }
 
 .movie-item-title{
+  width: 240px;
   display: flex;
   flex-direction: column;
   gap: 20px;

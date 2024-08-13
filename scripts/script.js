@@ -1,3 +1,5 @@
+import { carregar } from "./api.js"
+
 const movies = document.querySelector('#movies')
 
 let list = [
@@ -19,6 +21,39 @@ let list = [
   }
 ]
 
+
+let favMovies = getLocalStorage()
+
+function saveToLocalStorage(favMovies){
+
+  localStorage.setItem('favmovies',JSON.stringify(favMovies))
+}
+
+
+function getLocalStorage(keyName){
+
+  return JSON.parse(localStorage.getItem('favmovies'))
+}
+
+
+const checkbox = document.querySelector('#favorites_only')
+
+checkbox.addEventListener('click', () => {
+  const checked = checkbox.checked;
+
+  console.log('Checkbox is:', checked ? 'Checked' : 'Unchecked');
+
+  if (checked) {
+    updateMovieList(getLocalStorage());
+  } else {
+    carregar();
+  }
+});
+
+
+
+
+
 function updateMovieList(list){
 
   movies.innerHTML = ''
@@ -26,7 +61,8 @@ function updateMovieList(list){
 
     const backdropPath = movie.backdrop_path 
       ? `https://image.tmdb.org/t/p/w300/${movie.backdrop_path}` 
-      : '../assets/images/image2.jpeg';
+      : '../assets/images/image2.jpeg'; 
+
 
     const movieItem = document.createElement('div')
     movieItem.classList.add('movie-item')
@@ -81,10 +117,54 @@ function updateMovieList(list){
     favButton.id = 'set_favorite'
     avaliation.appendChild(favButton)
 
+
     const heart = document.createElement('img')
     heart.classList.add('heart')
-    heart.src = "assets/images/heart-empty.svg"
+    const favorited = getLocalStorage().find(item => item.id === movie.id)
+    if(favorited){
+      heart.src = "assets/images/heart-fill.svg"  
+    }
+    else{
+      //console.log(movie)
+      heart.classList.add('notFavorite')
+      heart.src = "assets/images/heart-empty.svg"
+    }
     favButton.appendChild(heart)
+
+
+
+    heart.addEventListener('click', ()=>{
+
+      const isFavorite = heart.classList.contains('notFavorite')
+      if(isFavorite){
+        heart.classList.toggle('notFavorite')
+        heart.src = "assets/images/heart-fill.svg"
+        const isInMovies = favMovies.find(item => item.id ===movie.id)
+
+        if(!isInMovies){
+          favMovies.push(movie)
+        }
+        
+        saveToLocalStorage(favMovies)
+      }
+      else{
+        heart.classList.toggle('notFavorite')
+        heart.src = "assets/images/heart-empty.svg"
+        const movieIndex = favMovies.findIndex(item => item.id === movie.id);
+        if (movieIndex > -1) {
+          favMovies.splice(movieIndex, 1);
+        }
+
+        
+        saveToLocalStorage(favMovies)
+      }
+      
+      console.log(movie)
+      console.log(favMovies)
+      console.log(getLocalStorage())
+      return favMovies
+
+    })
 
     const favButtonSpan = document.createElement('span')
     favButtonSpan.innerText = 'Favoritar'
@@ -96,5 +176,13 @@ function updateMovieList(list){
 
 
 //updateMovieList()
+
+
+
+
+
+
+
+
 
 export default updateMovieList;
